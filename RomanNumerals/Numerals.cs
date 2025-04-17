@@ -46,7 +46,7 @@ namespace RomanNumerals
 
             for (int i = 0; i < thousands; i++)
             {
-                numeral += "M";
+                numeral += Digits.M;
             }
 
             // Hundreds
@@ -65,12 +65,12 @@ namespace RomanNumerals
                 if (curr >= 5)
                 {
                     curr -= 5;
-                    numeral += "D";
+                    numeral += Digits.D;
                 }
 
                 for (int i = 0; i < curr; i++)
                 {
-                    numeral += "C";
+                    numeral += Digits.C;
                 }
             }
 
@@ -90,12 +90,12 @@ namespace RomanNumerals
                 if (curr >= 5)
                 {
                     curr -= 5;
-                    numeral += "L";
+                    numeral += Digits.L;
                 }
 
                 for (int i = 0; i < curr; i++)
                 {
-                    numeral += "X";
+                    numeral += Digits.X;
                 }
             }
 
@@ -115,12 +115,12 @@ namespace RomanNumerals
                 if (curr >= 5)
                 {
                     curr -= 5;
-                    numeral += "V";
+                    numeral += Digits.V;
                 }
 
                 for (int i = 0; i < curr; i++)
                 {
-                    numeral += "I";
+                    numeral += Digits.I;
                 }
             }
 
