@@ -9,46 +9,75 @@ namespace RomanNumerals
 {
     public static class Numerals
     {
-        static void SplitNumber(int number, out int thousands, out int hundreds, out int tens, out int ones)
+        static void SplitNumber(int number, ref int[] places)
         {
             // Split number into thousands, hundreds, tens, and ones
 
             int curr = number;
 
-            thousands = curr / 1000;
-            curr -= thousands * 1000;
+            places[0] = curr / 1000;
+            curr -= places[0] * 1000;
 
-            hundreds = curr / 100;
-            curr -= hundreds * 100;
+            places[1] = curr / 100;
+            curr -= places[1] * 100;
 
-            tens = curr / 10;
-            curr -= tens * 10;
+            places[2] = curr / 10;
+            curr -= places[2] * 10;
 
-            ones = curr;
-            curr -= ones;
+            places[3] = curr;
+            curr -= places[3];
 
-            WriteLine("\nThousands: " + thousands);
-            WriteLine("Hundreds: " + hundreds);
-            WriteLine("Tens: " + tens);
-            WriteLine("Ones: " + ones);
+            WriteLine("\nThousands: " + places[0]);
+            WriteLine("Hundreds: " + places[1]);
+            WriteLine("Tens: " + places[2]);
+            WriteLine("Ones: " + places[3]);
         }
         public static string ArabicToRoman(int number)
         {
-            int thousands, hundreds, tens, ones;
-            SplitNumber(number, out thousands, out hundreds, out tens, out ones);
+            int[] places = new int[4];
+            SplitNumber(number, ref places);
 
-            int curr;
+            // int curr;
             string numeral = "";
 
             // Append numeral
 
-            // Thousands
+            int p = 0;
 
-            for (int i = 0; i < thousands; i++)
+            while (p < 4)
             {
-                numeral += Digits.M;
+                // Initialize digit and digit in place
+                int dig = places[p];
+                int extDig = (int)Math.Pow(10, 3 - p);
+
+                if (dig == 9)
+                {
+                    numeral += (Digits)extDig;
+                    numeral += (Digits)(extDig * 10);
+                }
+                else if (dig == 4)
+                {
+                    numeral += (Digits)extDig;
+                    numeral += (Digits)(extDig * 5);
+                }
+                else
+                {
+                    if (dig >= 5)
+                    {
+                        dig -= 5;
+                        numeral += (Digits)(extDig * 5);
+                    }
+
+                    for (int i = 0; i < dig; i++)
+                    {
+                        numeral += (Digits)extDig;
+                    }
+                }
+
+                p++;
             }
 
+            /*
             // Hundreds
 
             curr = hundreds;
@@ -123,6 +152,7 @@ namespace RomanNumerals
                     numeral += Digits.I;
                 }
             }
+            */
 
             return numeral;
         }
