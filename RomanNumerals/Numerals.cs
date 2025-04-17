@@ -50,6 +50,7 @@ namespace RomanNumerals
                 int dig = places[p];
                 int extDig = (int)Math.Pow(10, 3 - p);
 
+                // Check digits
                 if (dig == 9)
                 {
                     numeral += (Digits)extDig;
