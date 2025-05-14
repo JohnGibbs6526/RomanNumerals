@@ -32,18 +32,48 @@ namespace RomanNumerals
             WriteLine("Tens: " + places[2]);
             WriteLine("Ones: " + places[3]);
         }
+
+        /*
+        static void SplitNumeral(string numeral, ref string[] groups)
+        {
+            // Split numeral in similar way to SplitNumber()
+
+            char ch = numeral[0];
+            int g = 0;
+            bool[] slots = new bool[4];
+
+            // Loop through numeral, find duplicates, and specify places
+            for (int i = 0; i < numeral.Length; i++)
+            {
+                if (numeral[i] == ch)
+                {
+                    groups[g] += ch;
+                }
+                else
+                {
+                    slots[g] = true;
+
+                    // TODO: Check if a Roman digit has an association with a higher digit in the same place
+                    if (!slots[g])
+                    {
+                        ch = numeral[i];
+                    }
+
+                    g++;
+                }
+            }
+        }
+        */
+
         public static string ArabicToRoman(int number)
         {
             int[] places = new int[4];
             SplitNumber(number, ref places);
 
-            // int curr;
             string numeral = "";
 
             // Append numeral
-
             int p = 0;
-
             while (p < 4)
             {
                 // Initialize digit and digit in place
@@ -79,6 +109,14 @@ namespace RomanNumerals
             }
 
             return numeral;
+        }
+
+        public static string[] RomanToArabic(string numeral)
+        {
+            string[] groups = new string[4];
+            // SplitNumeral(numeral, ref groups);
+
+            return groups;
         }
     }
 }

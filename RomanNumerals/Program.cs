@@ -41,7 +41,12 @@ namespace RomanNumerals
                     }
                     else if (option == 'r')
                     {
-                        WriteLine("Coming soon...");
+                        // Input Roman numeral
+                        Write("Enter a Roman numeral (I to MMMCMXCIX): ");
+                        string numeral = ReadLine();
+
+                        // Compute Roman numeral
+                        Console.WriteLine("Coming soon!");
                     }
                     else
                     {
